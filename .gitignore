@@ -1,5 +1,7 @@
-.space
+.vscode/
+.idea/
+.space/
+.venv/
+venv/
 node_modules/
 .env
-.venv
-venv
