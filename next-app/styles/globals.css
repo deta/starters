@@ -1,0 +1,9 @@
+:root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: sans-serif;
+  padding: 2rem;
+}
