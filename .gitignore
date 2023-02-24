@@ -1,0 +1,5 @@
+.space
+node_modules/
+.env
+.venv
+venv
