@@ -15,8 +15,6 @@ type TodoItem struct {
 	Text string `json:"text" xml:"text" form:"text" query:"text"`
 }
 
-var d, _ = deta.New()
-
 func main() {
 	var port string
 	if os.Getenv("PORT") != "" {
@@ -24,6 +22,10 @@ func main() {
 	} else {
 		port = "8080"
 	}
+
+	// Connect to a Base for storing todo items.
+	d, _ := deta.New()
+	todos_base, _ := base.New(d, "todos")
 
 	e := echo.New()
 
@@ -36,14 +38,9 @@ func main() {
 	})
 
 	e.GET("/api/todos", func(ctx echo.Context) error {
-		// Connect to a Base for storing todo items.
-		todos_base, err := base.New(d, "todos")
-		if err != nil {
-			return ctx.String(http.StatusInternalServerError, "Internal Server Error")
-		}
 		// Fetch all items from the Base.
 		var todos []map[string]interface{}
-		_, err = todos_base.Fetch(&base.FetchInput{Dest: &todos})
+		_, err := todos_base.Fetch(&base.FetchInput{Dest: &todos})
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "error: %v\n", err)
 			return ctx.String(http.StatusInternalServerError, "Internal Server Error")
@@ -53,12 +50,6 @@ func main() {
 	})
 
 	e.POST("/api/todos", func(ctx echo.Context) error {
-		// Connect to a Base for storing todo items.
-		todos_base, err := base.New(d, "todos")
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "error: %v\n", err)
-			return ctx.String(http.StatusInternalServerError, "Internal Server Error")
-		}
 		// Get the item from the request body.
 		item := new(TodoItem)
 		if err := ctx.Bind(item); err != nil {
@@ -73,7 +64,7 @@ func main() {
 		}
 		resp := map[string]string{
 			"text": item.Text,
-			"key": key,
+			"key":  key,
 		}
 		// Return the response as JSON.
 		return ctx.JSON(http.StatusCreated, resp)
