@@ -1,0 +1,14 @@
+# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
+v: 0
+micros:
+  - name: go-app
+    src: .
+    engine: custom
+    primary: true
+    commands:
+      - go get
+      - go build main.go
+    include:
+      - main
+      - static
+    run: ./main
