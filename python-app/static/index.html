@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="A simple Python app deployed on Space" />
+    <title>Python App on Space</title>
+    <style>
+      :root {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #121212;
+        color: #e0e0e0;
+        font-family: sans-serif;
+        padding: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hello from Python on Space! ✨</h1>
+    <img src="https://deta.space/docs_assets/developer.gif" alt="Cool GIF" />
+    <h2>Play around with the form below to save todo items to a Deta Base!</h2>
+    <span>Enter some text:</span>
+    <input type="text" id="todo-text" />
+    <button onclick="addTodo();">Submit</button>
+    <h2>Here are your todo items:</h2>
+    <ul id="todo-list"></ul>
+    <script>
+      async function updateList() {
+        const list = document.getElementById("todo-list");
+        const response = await fetch("/api/todos");
+        const todos = await response.json();
+        list.innerHTML = todos.map((todo) => `<li>${todo.text}</li>`).join("");
+      }
+      async function addTodo() {
+        const text = document.getElementById("todo-text").value;
+        await fetch("/api/todos", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ text }),
+        });
+        updateList();
+      }
+      updateList();
+    </script>
+  </body>
+</html>
