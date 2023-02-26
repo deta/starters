@@ -1,0 +1,20 @@
+# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
+v: 0
+micros:
+  - name: node-scheduled-actions
+    src: .
+    engine: nodejs16
+    primary: true
+    actions:
+      - id: 'drink'
+        name: 'Adding'
+        description: ' "Adding drink water" to db. Default is 3 hours.'
+        trigger: 'schedule'
+        default_interval: '0 */3 * * *'
+
+      - id: 'delete'
+        name: 'Deleting'
+        description: ' "Deleting drink water" form db after a day. Default is 1 day.'
+        trigger: 'schedule'
+        default_interval: '0 0 */1 * *'
+# See docs for more about "default_interval": https://deta.space/docs/en/basics/micros#interval-types-for-scheduled-actions
