@@ -54,6 +54,7 @@ When you are ready to release your app , run the `space release` command. This w
 - [SvelteKit](sveltekit-app)
 - [Go](go-app)
 - [Deno](deno-app)
+- [Next.js](node-scheduled-actions)
 
 ## Contributing
 
