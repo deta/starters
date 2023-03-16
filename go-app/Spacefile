@@ -5,6 +5,7 @@ micros:
     src: .
     engine: custom
     primary: true
+    dev: go run main.go
     commands:
       - go get
       - go build main.go

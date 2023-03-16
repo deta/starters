@@ -3,5 +3,6 @@ v: 0
 micros:
   - name: python-app
     src: .
+    dev: ./run.sh
     engine: python3.9
     primary: true
