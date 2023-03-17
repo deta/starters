@@ -1,0 +1,10 @@
+v: 0
+micros:
+  - name: python-app
+    path: python-app
+    run: ./run.sh
+    dev: ./run.sh
+  - name: node-app
+    primary: true
+    run: node index.js
+    dev: node index.js
