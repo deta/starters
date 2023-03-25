@@ -1,10 +1,13 @@
 v: 0
 micros:
   - name: python-app
-    path: python-app
+    src: ./python-app
+    engine: python3.9
     run: ./run.sh
     dev: ./run.sh
   - name: node-app
+    src: ./node-app
     primary: true
+    engine: nodejs16
     run: node index.js
     dev: node index.js
