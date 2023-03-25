@@ -5,4 +5,5 @@ micros:
     src: .
     engine: nodejs16
     primary: true
+    dev: node index.js
     run: node index.js

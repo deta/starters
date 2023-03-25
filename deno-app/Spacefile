@@ -5,6 +5,7 @@ micros:
     src: .
     engine: custom
     primary: true
+    dev: deno run --allow-all main.ts
     commands:
       - apt install -y unzip
       - curl -fsSL https://deno.land/x/install/install.sh | sh
