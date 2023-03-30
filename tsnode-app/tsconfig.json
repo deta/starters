@@ -1,0 +1,16 @@
+{
+    // use your own tsconfig accordingly
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "outDir": "dist",
+        "module": "ES6",
+        "strict": true,
+        "allowSyntheticDefaultImports": true,
+        "target": "ES6"
+    },
+    "include": ["./index.ts"],
+    "ts-node": {
+        "esm": true
+    }
+}
