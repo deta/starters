@@ -1,5 +1,6 @@
-name: Push to Space
-on: push
+name: Deploy to deta space
+run-name: ${{ github.actor }} is testing out
+on: [push]
 
 jobs:
   push-to-space:
