@@ -1,4 +1,4 @@
-# Starter Space Apps Test
+# Starter Space Apps
 
 This repository contains a collection of example Space apps to help you get started with Space.
 
