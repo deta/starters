@@ -6,3 +6,5 @@ micros:
     engine: nodejs16
     primary: true
     run: node index.js
+    dev: node index.js
+    provide_actions: true

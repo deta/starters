@@ -30,6 +30,36 @@ app.post("/api/todos", async (request, response) => {
   response.send(resp);
 });
 
+app.post("/actions/list", async (request, response) => {
+  const todos = await todos_base.fetch();
+  response.json({
+    items: todos.items,
+  });
+});
+
+app.get("/__space/actions", async (request, response) => {
+  response.json({
+    actions: [
+      {
+        name: "list",
+        title: "List todos",
+        path: "/actions/list",
+      },
+      {
+        name: "add",
+        title: "Add todo",
+        path: "/api/todos",
+        input: [
+          {
+            name: "text",
+            type: "string",
+          },
+        ],
+      },
+    ],
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
