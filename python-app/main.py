@@ -32,3 +32,33 @@ async def add_todo(item: TodoItem):
     resp = todos_base.put(item.dict())
     # Return the response as JSON.
     return resp
+
+@app.post("/actions/list")
+async def list_action():
+    todos = todos_base.fetch()
+    # Return the items as JSON.
+    return todos.items
+
+
+@app.get("/__space/actions")
+async def actions():
+    return {
+        "actions": [
+            {
+                "name": "list",
+                "description": "List all todos",
+                "path": "/actions/list"
+            },
+            {
+                "name": "add",
+                "path": "/api/todos",
+                "description": "Add a todo",
+                "input": [
+                    {
+                        "name": "text",
+                        "type": "string"
+                    }
+                ]
+            }
+        ]
+    }
