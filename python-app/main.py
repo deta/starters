@@ -46,13 +46,13 @@ async def actions():
         "actions": [
             {
                 "name": "list",
-                "description": "List all todos",
+                "title": "List all todos",
                 "path": "/actions/list"
             },
             {
                 "name": "add",
                 "path": "/api/todos",
-                "description": "Add a todo",
+                "title": "Add a todo",
                 "input": [
                     {
                         "name": "text",
