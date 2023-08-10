@@ -1,0 +1,15 @@
+# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
+v: 0
+micros:
+  - name: tsnode-app
+    src: .  
+    engine: nodejs16
+    primary: true
+    dev: npm run dev
+    commands:
+      - npm run build 
+    include:
+      - dist
+      - static
+      - package.json
+    run: node ./dist/index.js
