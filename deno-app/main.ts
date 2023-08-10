@@ -1,6 +1,6 @@
-import { serve } from "https://deno.land/std@0.178.0/http/server.ts";
-import { Deta } from "https://esm.sh/deta@1.1.0";
-const deta = Deta(Deno.env.get("DETA_PROJECT_KEY")!);
+import { Deta } from "npm:deta";
+
+const deta = Deta();
 
 const handler = async (request: Request): Promise<Response> => {
   const url = new URL(request.url);
@@ -8,7 +8,7 @@ const handler = async (request: Request): Promise<Response> => {
     case "/": {
       // Serve a static HTML file
       const body = new TextDecoder().decode(
-        Deno.readFileSync("./static/index.html"),
+        Deno.readFileSync("./static/index.html")
       );
       return new Response(body, {
         status: 200,
@@ -48,6 +48,9 @@ const handler = async (request: Request): Promise<Response> => {
   }
 };
 
-await serve(handler, {
-  port: +Deno.env.get("PORT")! || 8080,
-});
+Deno.serve(
+  {
+    port: parseInt(Deno.env.get("PORT") || "8080"),
+  },
+  handler
+);
