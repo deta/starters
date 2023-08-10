@@ -23,7 +23,7 @@ const handler = async (request: Request): Promise<Response> => {
         // Fetch all items from the Base.
         const todos = await todos_base.fetch();
         // Return the items as JSON.
-        return new Response(JSON.stringify(todos.items), {
+        return Response.json(todos.items, {
           status: 200,
           headers: { "Content-Type": "application/json" },
         });
@@ -33,7 +33,7 @@ const handler = async (request: Request): Promise<Response> => {
         // Put the item into the Base.
         const resp = await todos_base.put(item);
         // Return the response as JSON.
-        return new Response(JSON.stringify(resp), {
+        return Response.json(resp, {
           status: 201,
           headers: { "Content-Type": "application/json" },
         });
