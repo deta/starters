@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drink water!</title>
+</head>
+
+<style>
+  body{
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    font-family: "Lucida Console", "Courier New", monospace
+  }
+  .flex{
+    display: flex;
+    justify-content: flex-end;
+    max-width: 100vw;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: space-around;
+    align-items: center;
+  }
+  .footer{
+    display: flex;
+    max-width: 100vw;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+</style>
+
+<body>
+  <div>
+    <% if (data) { %>
+      <div class="flex">
+        <% data.forEach( item=> { %>
+          <div>
+            <%= item.message %> @ <%= `${new Date(item.added).toLocaleDateString()} ${new Date(item.added).toLocaleTimeString()}` %>
+          </div>
+          <% }) %>
+      </div>
+      <% }else{ %>
+        <div>
+          No messages!
+        </div>
+      <% } %>
+      <div class="footer">
+        <p>by <a href="https://github.com/xarzoa" target="_blank" rel="noopener noreferrer"> xarzoa</a></p>
+      </div>
+  </div>
+</body>
+
+</html>
